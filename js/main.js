@@ -28,6 +28,14 @@ function changeBGImage() {
 	puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
 }
 
+
+//Check dropzones for Each loop {
+		// if(zones has a child) {
+			//add that piece(s)
+				//puzzlePiece.Div.appendChild()
+		// }
+	//}
+
 function handleStartDrag() { 
 	console.log('started dragging this piece:', this);
 	// store a reference to the puzzle piece image that we're dragging
@@ -41,20 +49,21 @@ function handleDragOver(e) {
 	console.log('dragged over me'); 
 }
 
-function handleDrop(e) { 
-	e.preventDefault();
-	console.log('dropped something on me');
-	
-	// bug fix #1 should go here, and it's at most 3 lines of JS code
 
-	// this line is going to move the dragged piece from the left side of the board
-	// into whatever drop zone we choose. appendChild means "add element to the container"
-	if(this.children.length >=1){
-		return;
+
+
+function handleDrop(e) {
+	e.preventDefault();
+	console.log("Dropped piece");
+  
+	if (this.children.length >= 1) {
+	  return;
 	}
-	this.appendChild(draggedPiece);
-	 
-}
+  
+	let droppedId = e.dataTransfer.getData("draggedEl");
+	console.log(droppedId);
+	this.appendChild(document.querySelector(`#${droppedId}`));
+  }
 // step 2
 // event handling always goes at the bottom => 
 // how do we want users to interact with our app
